@@ -1,0 +1,108 @@
+<!-- Login 9 - Bootstrap Brain Component -->
+<style>
+    section {
+        background-color: black !important;
+        height: auto;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+</style>
+
+<section class=" py-3 py-md-5 py-xl-8">
+    <br><br> <br>
+    <div class="container">
+        <div class="row gy-4 align-items-center">
+
+            <div class="col-12 col-md-12 col-xl-12">
+                <a href="/" class="btn btn-primary mb-3">Back to home</a>
+                {{#if user}}
+                <a href="/edit-profile/{{user._id}}" class="btn mb-3 btn-warning">
+                    <i class="bi bi-pen "></i> Edit Profile</a>
+
+                <a href="/change-password/{{user._id}}" class="btn mb-3 btn-secondary">
+                    <i class="bi bi-pen "></i>Change Password</a>
+                {{/if}}
+
+                <div class="card border-0 rounded-4">
+                    <div class="card-body p-3 p-md-4 p-xl-5">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-4">
+                                    <h3>My Profile</h3>
+                                </div>
+                            </div>
+                        </div>
+                        {{#if user}}
+                        <form action="/signup" method="POST">
+                            <input type="hidden" name="date" id="datetime">
+                            <div class="row g-1">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="mb-2">Name</label>
+                                        <input class="form-control" type="text" name="Name" value="{{user.Name}}"
+                                            placeholder="Your Full Name" pattern="[A-Za-z]+"
+                                            title="Only letters are allowed" readonly>
+                                        {{#if errors.name}}<div class="text-danger">{{errors.name}}</div>{{/if}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Email</label>
+                                <input class="form-control" type="email" name="Email" value="{{user.Email}}"
+                                    placeholder="Your Email" readonly>
+                                {{#if errors.email}}<div class="text-danger">{{errors.email}}</div>{{/if}}
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Phone Number</label>
+                                <input class="form-control" type="number" name="Phone" value="{{user.Phone}}"
+                                    placeholder="Your Phone Number" readonly>
+                                {{#if errors.phone}}<div class="text-danger">{{errors.phone}}</div>{{/if}}
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Address</label>
+                                <textarea class="form-control" name="Address" placeholder="Your Address"
+                                    readonly>{{Address}}</textarea>
+                                {{#if errors.address}}<div class="text-danger">{{errors.address}}</div>{{/if}}
+                            </div>
+
+                            <div class="form-group ">
+                                <label class="mb-2">Pincode</label>
+                                <input class="form-control me-2" type="number" id="text" name="Pincode"
+                                    value="{{user.Pincode}}" placeholder="Your Pincode"
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" readonly>
+
+                                {{#if errors.pincode}}<div class="text-danger">{{errors.pincode}}</div>{{/if}}
+                            </div>
+
+                            <div class="row g-1">
+                                <div class="col-lg-6">
+                                    <label class="mb-2">District</label>
+                                    <input class="form-control" type="text" name="District" id="district"
+                                        value="{{user.District}}" placeholder="Your District Name" pattern="[A-Za-z]+"
+                                        title="Only letters are allowed" readonly>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="mb-2">State</label>
+                                        <input class="form-control" type="text" id="state" name="State"
+                                            value="{{user.State}}" placeholder="Your State Name" pattern="[A-Za-z]+"
+                                            title="Only letters are allowed" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                        {{/if}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

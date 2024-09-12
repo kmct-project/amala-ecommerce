@@ -1,0 +1,129 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Manage Staffs</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item">Staff</li>
+                <li class="breadcrumb-item active">All-Staff</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">All Staffs</h5>
+                        <div class="table-responsive">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th data-type="date" data-format="YYYY/DD/MM">Joined Date</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>District</th>
+                                        <th>State</th>
+                                        <th>Manage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each staffs}}
+                                    <tr>
+                                        <td>{{incremented @index}}</td>
+                                        <td>{{this.date}}</td>
+                                        <td>{{this.Staffname}}</td>
+                                        <td>{{this.Email}}</td>
+                                        <td>{{this.Phone}}</td>
+                                        <td>{{this.Address}}</td>
+                                        <td>{{this.District}}</td>
+                                        <td>{{this.State}}</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                {{#if this.approved}}
+                                                <span class="badge bg-success p-2">Approved</span>
+                                                {{else if this.rejected}}
+                                                <span class="badge bg-danger p-2">Rejected</span>
+                                                {{else}}
+                                                <!-- Approve Button -->
+                                                <button class="btn btn-success btn-sm"
+                                                    onclick="handleApproval('{{this._id}}', '{{this.Staffname}}', '{{this.Phone}}')">
+                                                    <i class="bi bi-check2"></i>
+                                                </button>
+
+                                                <!-- Reject Button -->
+                                                <button class="btn btn-dark btn-sm"
+                                                    onclick="handleRejection('{{this._id}}', '{{this.Staffname}}', '{{this.Phone}}')">
+                                                    <i class="bi bi-ban"></i>
+                                                </button>
+                                                {{/if}}
+                                                <form action="/admin/delete-staff/{{this._id}}" method="POST">
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+<script>
+    async function handleApproval(staffId, staffName, phoneNumber) {
+        // First, send an approval request to the server
+        try {
+            const response = await fetch(`/admin/approve-staff/${staffId}`, {
+                method: 'POST',
+            });
+
+            if (response.ok) {
+                // If approval is successful, redirect to WhatsApp with a pre-filled message
+                const message = `Hi ${staffName}, your request has been approved by the admin. You can now log in to your dashboard`;
+                const waLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.location.href = waLink;
+            } else {
+                alert('Error approving the staff.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function handleRejection(staffId, staffName, phoneNumber) {
+        // First, send a rejection request to the server
+        try {
+            const response = await fetch(`/admin/reject-staff/${staffId}`, {
+                method: 'POST',
+            });
+
+            if (response.ok) {
+                // If rejection is successful, redirect to WhatsApp with a pre-filled message
+                const message = `Hi ${staffName}, your request has been rejected by the admin. Please contact support for more details.`;
+                const waLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.location.href = waLink;
+            } else {
+                alert('Error rejecting the staff.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>

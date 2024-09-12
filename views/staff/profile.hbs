@@ -1,0 +1,68 @@
+<style>
+    .form-group {
+        margin-bottom: 10px;
+    }
+</style>
+
+<!-- Login Wrapper Area -->
+<main id="main" class="main">
+    <div class="container-lg">
+        <div class="text-center px-4"><img class="login-intro-img" src="assets/img/bg-img/36.png" alt=""></div>
+        <!-- Register Form -->
+
+        <div class="d-flex gap-2 align-items-center">
+            <a href="/staff" class="btn btn-sm btn-dark">
+                <i class="bi bi-arrow-left-short "></i> Back</a>
+            {{#if staff}}
+            {{!-- <a href="/edit-profile/{{staff._id}}" class="btn btn-sm btn-primary">
+                <i class="bi bi-pen "></i> Edit Profile</a> --}}
+
+            {{/if}}
+            <a href="/staff/change-password/{{staff._id}}" class="btn btn-sm btn-secondary">
+                <i class="bi bi-pen "></i>Change Password</a>
+        </div>
+
+        <div class="card shadow p-4 mt-3">
+
+            <div class="register-form mt-4">
+                <h4 class="mb-5 text-left">My Profile</h4>
+                {{#if staff}}
+                <form action="#!" method="">
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="Companyname" value={{staff.Staffname}} readonly>
+                    </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" name="Email" value={{staff.Email}} readonly>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" name="Phone" value={{staff.Phone}} readonly>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="Address" readonly>{{staff.Address}} </textarea>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" name="Pincode" value={{staff.Pincode}} readonly>
+            </div>
+            <div class="row g-1">
+                <div class="col-lg-7">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="District" value={{staff.District}} readonly>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="State" value={{staff.State}} readonly>
+                    </div>
+                </div>
+            </div>
+
+            </form>
+            {{/if}}
+        </div>
+
+    </div>
+
+    </div>
+</main>

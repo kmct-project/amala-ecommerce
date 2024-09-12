@@ -1,0 +1,184 @@
+<!-- Login 9 - Bootstrap Brain Component -->
+<style>
+    section {
+        height: auto;
+        background-color: black !important;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+</style>
+
+<section class=" py-3 py-md-5 py-xl-8">
+    <div class="container">
+        <div class="row gy-4 align-items-center">
+            <div class="col-12 col-md-6 col-xl-7">
+                <div class="d-flex justify-content-center text-bg-primary">
+                    <div class="col-12 col-xl-9" style="color: white;">
+                        <h2>Your One-Stop Shop for Trendy Products</h2>
+                        <hr class="border-primary-subtle mb-4">
+                        <p class="h5 mb-4">Discover the latest trends in fashion, electronics, home essentials, and
+                            more at unbeatable prices. Shop with confidence and enjoy fast delivery, secure payments,
+                            and excellent customer service.</p>
+                        <div class="text-endx">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+                                class="bi bi-grip-horizontal" viewBox="0 0 16 16">
+                                <path
+                                    d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-5">
+                <div class="card border-0 rounded-4">
+                    <div class="card-body p-3 p-md-4 p-xl-5">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-4">
+                                    <h3>Sign Up</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="/signup" method="POST">
+                            <input type="hidden" name="date" id="datetime">
+                            <div class="row g-1">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="Name" value="{{Name}}"
+                                            placeholder="Your Full Name" pattern="[A-Za-z]+"
+                                            title="Only letters are allowed">
+                                        {{#if errors.name}}<div class="text-danger">{{errors.name}}</div>{{/if}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="email" name="Email" value="{{Email}}"
+                                    placeholder="Your Email">
+                                {{#if errors.email}}<div class="text-danger">{{errors.email}}</div>{{/if}}
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="number" name="Phone" value="{{Phone}}"
+                                    placeholder="Your Phone Number">
+                                {{#if errors.phone}}<div class="text-danger">{{errors.phone}}</div>{{/if}}
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="Address"
+                                    placeholder="Your Address">{{Address}}</textarea>
+                                {{#if errors.address}}<div class="text-danger">{{errors.address}}</div>{{/if}}
+                            </div>
+
+                            <div class="form-group d-flex">
+                                <input class="form-control me-2" type="number" id="text" name="Pincode"
+                                    value="{{Pincode}}" placeholder="Your Pincode"
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <button class="btn btn-primary" type="button" id="submit">Check</button>
+                                {{#if errors.pincode}}<div class="text-danger">{{errors.pincode}}</div>{{/if}}
+                            </div>
+
+                            <div class="row g-1">
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" name="District" id="district"
+                                        value="{{District}}" placeholder="Your District Name" pattern="[A-Za-z]+"
+                                        title="Only letters are allowed" readonly>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" id="state" name="State"
+                                            value="{{State}}" placeholder="Your State Name" pattern="[A-Za-z]+"
+                                            title="Only letters are allowed" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" id="psw-input" name="Password" value="{{Password}}"
+                                    type="password" placeholder="Enter Password">
+                                {{#if errors.password}}<div class="text-danger">{{errors.password}}</div>{{/if}}
+
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="psw-input" name="Repassword" value="{{Repassword}}"
+                                    type="password" placeholder="Enter Re-Password">
+                                {{#if errors.repassword}}<div class="text-danger">{{errors.repassword}}</div>{{/if}}
+
+                            </div>
+
+                            <button class="btn btn-dark w-100" type="submit">Signup</button>
+                        </form>
+                        <p class="mt-4">Already have an account? <a href="/signin">Sign in</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        function searchPin() {
+            let pin = document.getElementById("text").value;
+            $.getJSON("https://api.postalpincode.in/pincode/" + pin, function (data) {
+                createHTML(data);
+            });
+
+            function createHTML(data) {
+                var htmlElements = " ";
+                var msg = "";
+
+                // Check if PostOffice array exists and has items
+                if (data[0].PostOffice && data[0].PostOffice.length) {
+                    // Limit to the first item in the PostOffice array
+                    var postOffice = data[0].PostOffice[0];
+
+                    // Set District and State input fields
+                    document.getElementById("district").value = postOffice.District || ''; // Update District field
+                    document.getElementById("state").value = postOffice.State || ''; // Update State field
+
+                    // Create HTML for the first PostOffice item
+                    htmlElements += '<div class="col-sm-4"><div class="card"><div class="list-group"><h4>' + postOffice.District + '</h4><p>PostOffice :<span class="pull-right">' + postOffice.State + '</span></p></div></div></div>';
+                } else {
+                    alert('Enter Valid pincode');
+                }
+
+                // Update the HTML content
+                var htmlView = document.getElementById("mkslider");
+                htmlView.innerHTML = htmlElements;
+                var msgView = document.getElementById("total-msg");
+                msgView.innerHTML = msg;
+            }
+
+            setTimeout(function () {
+                $('#close').trigger('click');
+            }, 3000);
+        }
+
+        $(document).on("click", '#close', function () {
+            $('#total-msg').remove();
+        });
+
+        document.getElementById("submit").addEventListener("click", searchPin);
+    });
+
+</script>
+
+<script>
+    // Get current date and time
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = ((now.getHours() + 11) % 12 + 1).toString().padStart(2, '0'); // Convert to 12-hour format
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+
+    // Set default value to current date and time in 12-hour format with AM/PM
+    const defaultDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    document.getElementById('datetime').value = defaultDateTime;
+</script>

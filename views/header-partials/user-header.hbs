@@ -1,0 +1,63 @@
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+        <a href="/" class="logo d-flex align-items-center me-auto">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
+            <h1 class="sitename">Dewi</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li><a href="#hero" class="active">Home<br></a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+                {{#if user}}
+                <li class="dropdown"><a href="#"><span>{{user.Name}} </span> <i
+                            class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li>
+                            <a href="/profile">
+                                <div class="d-flex gap-2"><i class="bi bi-person-circle mt-1"></i>My Profile</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/signout">
+                                <div class="d-flex gap-2"><i class="bi bi-box-arrow-right mt-1"></i>Signout</div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                {{else}}
+                <li class="dropdown"><a href="#"><span>Signin/Signup</span> <i
+                            class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li>
+                            <a href="/signin">
+                                <div class="d-flex gap-2"><i class="bi bi-person-circle mt-1"></i>User</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/staff/signin">
+                                <div class="d-flex gap-2"><i class="bi bi-shop-window mt-1"></i>Staff</div>
+                            </a>
+                        </li>
+                        {{!-- <li>
+                            <a href="/company/signin">
+                                <div class="d-flex gap-2"><i class="bi bi-buildings-fill mt-1"></i>Company</div>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </li>
+                {{/if}}
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        <a class="cta-btn" href="/">Get Started</a>
+
+    </div>
+</header>
